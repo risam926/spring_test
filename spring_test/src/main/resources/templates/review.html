@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+	<link th:href="@{/css/review.css}" rel="stylesheet" />
+	<link th:href="@{/css/header.css}" rel="stylesheet" />
+	<link th:href="@{/css/footer.css}" rel="stylesheet" />
+    <title>口コミ投稿画面</title>
+</head>
+<body>
+	<div th:replace="common/header :: layout-header"></div>
+    <form class="horizontal-review-form" th:action="@{/review}" th:object="${reviewsForm}" method="post"enctype="multipart/form-data">
+		<h1>口コミ投稿画面</h1>
+		<input type="hidden" th:field="*{productId}" />
+		<input type="hidden" th:field="*{userId}"  />
+	
+		<div class="form-content">
+		    <div class="left-column">
+            <label for="dummyUserName">ユーザー名（任意）</label>
+            <input type="text" th:field="*{dummyUserName}" id="dummyUserName" name="dummyUserName" placeholder="ユーザー名">
+			<span th:errors="*{dummyUserName}"></span>
+        </div>
+        <div>
+            <label for="rating">評価</label>
+            <select th:value="*{rating}" id="rating" name="rating">
+				
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div>
+            <label for="email">メールアドレス</label>
+            <input type="email" th:value="*{email}" id="email" name="email" placeholder="メールアドレス">
+        </div>
+		</div>
+		
+		<div class="right-column">
+        <div>
+            <label for="comment">コメント</label>
+            <textarea th:field="*{comment}"id="comment" name="comment" placeholder="コメント"></textarea>
+			<span th:errors="*{comment}"></span>
+        </div>
+        <div>
+            <label for="file">ファイル添付</label>
+            <input type="file" th:value="@{*{reviewImgPath}}" id="reviewImgPath" name="reviewImgPath">
+        </div>
+        <div>
+            <button type="submit">投稿</button>
+        </div>
+		</div>
+		<div th:if="${error}" class="error-area">
+			<p th:text="${error}"></p>
+		</div>
+    </form>
+	<div th:replace="common/footer :: layout-footer"></div>  
+</body>
+</html>
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/order_check.css}" rel="stylesheet" />
+<link th:href="@{/css/header.css}" rel="stylesheet" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<title>購入品確認画面</title>
+</head>
+<body>
+	<div th:replace="common/header :: layout-header"></div>
+	<div class="order-card">
+	  <div class="customer-info">
+	    <h2>購入者情報</h2>
+	    <p><strong>名前：</strong><span th:text="${ordersForm.name}"></span></p>
+	    <p><strong>住所：</strong><span th:text="${ordersForm.address}"></span></p>
+	    <p><strong>アパート名：</strong><span th:text="${ordersForm.apartment}"></span></p>
+	    <p><strong>カード番号：</strong><span th:text="${ordersForm.cardNumber}"></span></p>
+	    <p><strong>有効期限：</strong><span th:text="${ordersForm.expiryDate}"></span></p>
+	  </div>
+
+	  <div class="product-summary">
+	    <h2>購入商品</h2>
+	    <div th:each="cart : ${cart_index}" class="product-item">
+	      <img th:src="${cart.imgPath}" alt="商品画像" width="100"/>
+	      <div>
+	        <p><strong>商品名：</strong> <span th:text="${cart.productName}"></span></p>
+	        <p><strong>個数：</strong> <span th:text="${cart.quantity}"></span></p>
+	      </div>
+	    </div>
+	    <p><strong>合計金額：</strong><span th:text="${totalWithTax}"></span> 円</p>
+	    <div class="button-group">
+	      <a th:href="@{/order_index}"><button type="button">編集</button></a>
+	      <a th:href="@{/complete}"><button type="button">購入</button></a>
+	    </div>
+	  </div>
+	</div>
+
+	<div th:replace="common/footer :: layout-footer"></div> 
+</body>
+</html>

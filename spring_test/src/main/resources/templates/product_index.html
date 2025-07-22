@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link th:href="@{/css/product_index.css}" rel="stylesheet" />
+  <link th:href="@{/css/header.css}" rel="stylesheet" />
+  <link th:href="@{/css/footer.css}" rel="stylesheet" />
+  <title>商品詳細画面</title>
+</head>
+<body>
+	<div th:replace="common/header :: layout-header"></div>
+			<!-- 1. 商品情報 -->
+			  
+			      <h1>商品詳細</h1>
+				    <div class="product-card">
+				      <img th:src="${product.imgPath}" alt="商品画像"/>
+				    </div>
+				    <div>
+				      <p>商品名：<span th:text="${product.productName}"></span></p>
+				      <p>メーカー名：<span th:text="${product.companies.companyName}"></span></p>
+				      <p>価格：¥<span th:text="${product.price}"></span></p>
+				      <p>税抜価格：¥<span th:text="${product.taxPrice}"></span></p>
+				      <p>在庫数：
+				        <span th:text="${product.stock > 0 ? '在庫あり(' + product.stock + '個)' : '在庫なし'}"></span>
+				      </p>
+				    </div>
+					
+			<!-- 2. 購入オプション -->
+					<div class="section">
+					<h2>購入オプション</h2>
+					<form th:action="@{/cart_addition}" th:object="${cartsForm}" method="post">
+						<input type="hidden" th:field="*{productId}" />
+					  <label for="quantity">数量：</label>
+					  <select id="quantity" name="quantity">
+					    <option th:each="i : ${#numbers.sequence(1, product.stock > 0 ? product.stock : 1)}"
+					            th:value="${i}" th:text="${i}">
+					    </option>
+					  </select>
+					  <p>価格：¥<span th:text="${product.price}"></span></p>
+					  <p>税込み価格：¥<span th:text="${product.taxPrice}"></span></p>
+					  <p>在庫表示：<span th:text="${product.stock > 0 ? '在庫あり(' + product.stock + '個)' : '在庫なし'}"></span></p>
+					  <button type="submit">カートに入れる</button>
+					</form>
+
+					</div>
+					
+			   <!-- 3. 口コミ一覧 -->
+			      <div class="section">
+			        <h2>口コミ一覧</h2>
+			        <ul class="reviews">
+			          <li th:each="rev : ${reviews}">
+			            <p>ユーザー名：<span th:text="${rev.dummyUserName ?: '匿名'}"></span></p>
+						<p>評価：
+						  <span th:each="i : ${#numbers.sequence(1, rev.rating)}">★</span>
+						</p>
+
+			            <p>コメント：<span th:text="${rev.comment}"></span></p>
+			            <p>投稿日時：<span th:text="${rev.createdAt}"></span></p>
+						
+			          </li>
+			        </ul>
+					<div th:if="${reviews == null or #lists.isEmpty(reviews)}">
+					    <p>口コミがありません</p>
+					</div>
+					<a th:href="@{/review/{productId}(productId=${product.productId})}">
+						口コミ投稿
+					</a>
+			      </div>
+				  <div class="section">
+				  <form th:action="@{/buy_now}" method="post">
+				    <input type="hidden" name="productId" th:value="${product.productId}" />
+				    <input type="hidden" name="quantity" value="1" />
+				    <button type="submit">単品購入</button>
+				  </form>
+				  </div>
+
+
+	<div th:replace="common/footer :: layout-footer"></div>  		 		   
+			   
+</body>
+</html>

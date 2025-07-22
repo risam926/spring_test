@@ -1,0 +1,72 @@
+@charset "UTF-8";
+.horizontal-card {
+  max-width: 1000px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.card-image img {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-content h1 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.card-content label {
+  font-weight: bold;
+  color: #555;
+  display: inline-block;
+  width: 100px;
+}
+
+.card-content input[type="text"],
+.card-content input[type="number"] {
+  width: calc(100% - 110px);
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.button-group button {
+  background-color: #1976d2;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.button-group button:hover {
+  background-color: #1565c0;
+}
+
+
+

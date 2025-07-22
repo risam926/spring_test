@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+	<link th:href="@{/css/mypage.css}" rel="stylesheet" />
+	<link th:href="@{/css/header.css}" rel="stylesheet" />
+	<link th:href="@{/css/footer.css}" rel="stylesheet" />
+    <title>マイページ</title>
+</head>
+<body>
+	<div th:replace="common/header :: layout-header"></div>
+	<div class="section horizontal-card">
+	  <div class="card-left">
+	    <h1>マイページ</h1>
+	    <p>名前：<span th:text="${usersForm.userName}"></span></p>
+	    <p>名前（ひらがな）：<span th:text="${usersForm.userNameKana}"></span></p>
+	    <p>電話番号：<span th:text="${usersForm.phone}"></span></p>
+	  </div>
+	</div>
+	<div th:replace="common/footer :: layout-footer"></div>  
+</body>
+</html>
+

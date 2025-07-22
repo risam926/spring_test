@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/order_index.css}" rel="stylesheet" />
+<link th:href="@{/css/header.css}" rel="stylesheet" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+
+<title>購入品詳細画面</title>
+</head>
+<body>
+	<div th:replace="common/header :: layout-header"></div>
+	<form class="horizontal-card" th:action="@{/order_check}" th:object="${OrdersForm}" method="post">
+	  <h1>購入品詳細</h1>
+	  <div class="card-body">
+	    <div class="left-block">
+	      <p>＜受け取り場所選択＞</p>
+	      <div class="radio-group">
+			<input type="radio" name="selectedLocation" value="1" id="loc1" checked>
+				        <label for="loc1">受け取り場所１</label>
+
+				        <input type="radio" name="selectedLocation" value="2" id="loc2">
+				        <label for="loc2">受け取り場所２</label>
+	      </div>
+	      <div id="location1">
+			<h3 id="place_num">受け取り場所１</h3>
+				        <input type="text" th:field="*{name}" placeholder="名前">
+						<span th:errors="*{name}"></span>
+				        <input type="text" th:field="*{address}" placeholder="住所">
+						<span th:errors="*{address}"></span>
+				        <input type="text" th:field="*{apartment}" placeholder="アパート名等">
+	      </div>
+	    </div>
+	    <div class="right-block">
+	      <p>＜お支払情報選択＞</p>
+	      <div class="radio-group">
+			<input type="radio" name="selectedCard" value="1" id="card1" checked>
+				        <label for="card1">お支払情報１</label>
+
+				        <input type="radio" name="selectedCard" value="2" id="card2">
+				        <label for="card2">お支払情報２</label>
+	      </div>
+	      <div id="cardNumber1">
+			<h3 id="pay_num">お支払情報１</h3>
+							<input type="text" th:field="*{cardNumber}" placeholder="カード番号">
+							<span th:errors="*{cardNumber}"></span>
+							<input type="text" th:field="*{expiryDate}" placeholder="有効期限（MM/YY）">
+							<span th:errors="*{expiryDate}"></span>
+	      </div>
+	      <button type="submit">確認画面へ</button>
+	    </div>
+	  </div>
+	</form>
+<script>
+	
+	document.addEventListener("DOMContentLoaded", function () {
+		console.log(222);
+	    // 受け取り場所の切り替え
+	    document.querySelectorAll('input[name="selectedLocation"]').forEach(radio => {
+	        radio.addEventListener('change', () => {
+				if(radio.value === "1"){
+					document.getElementById('place_num').textContent = '受け取り場所１';
+				}else{
+					document.getElementById('place_num').textContent = '受け取り場所２';
+				}
+
+	        });
+	    });
+
+	    // お支払情報の切り替え
+	    document.querySelectorAll('input[name="selectedCard"]').forEach(radio => {
+	        radio.addEventListener('change', () => {
+				if(radio.value === "1"){
+									document.getElementById('pay_num').textContent = 'お支払情報１';
+								}else{
+									document.getElementById('pay_num').textContent = 'お支払情報２';
+								}
+	        });
+	    });
+	});
+
+</script>
+<div th:replace="common/footer :: layout-footer"></div>  
+</body>
+</html>
+
+

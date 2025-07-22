@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/cart_addition.css}" rel="stylesheet" />
+<link th:href="@{/css/header.css}" rel="stylesheet" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<title>カート追加画面</title>
+</head>
+<body>
+	<div th:replace="common/header :: layout-header"></div>
+<form class="horizontal-card" th:action="@{/cart_addition}" th:object="${cartsForm}" method="post">
+  <div class="card-body">
+    <div class="card-image">
+      <img th:src="@{*{imgPath}}" alt="商品画像">
+    </div>
+    <div class="card-content">
+      <h1>カート追加画面</h1>
+
+      <div><label>商品名：</label><input type="text" th:value="*{productName}" readonly /></div>
+      <div><label>価格：</label><input type="text" th:value="*{price} + '円'" readonly /></div>
+      <div><label>個数：</label><input type="number" th:field="*{quantity}" min="1" /></div>
+
+      <div class="button-group">
+        <a th:href="@{/order_index}"><button type="button">レジに進む</button></a> 
+        <a th:href="@{/cart_index}"><button type="button">カートに移動</button></a> 
+        <a th:href="@{/top}"><button type="button">TOP画面に戻る</button></a>
+      </div>
+    </div>
+  </div>
+</form>
+
+	<div th:replace="common/footer :: layout-footer"></div>  		
+
+</body>
+</html>

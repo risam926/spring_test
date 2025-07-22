@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/complete.css}" rel="stylesheet" />
+<link th:href="@{/css/header.css}" rel="stylesheet" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<title>完了画面</title>
+</head>
+<body>
+	<div th:replace="common/header :: layout-header"></div>
+	<div class="order-card">
+	  <div class="left-section">
+	    <h2>注文商品</h2>
+	    <div th:each="cart : ${cart_index}" class="product">
+	      <img th:src="@{${cart.imgPath}}" alt="商品画像" />
+	      <div>
+	        <p>商品名：<span th:text="${cart.productName}"></span></p>
+	        <p>数量：<span th:text="${cart.quantity}"></span></p>
+	      </div>
+	    </div>
+	    <p><strong>合計金額：</strong><span th:text="${totalWithTax}"></span> 円</p>
+	  </div>
+
+	  <div class="right-section">
+	    <h2>お届け先</h2>
+	    <p>名前：<span th:text="${ordersForm.name}"></span></p>
+	    <p>住所：<span th:text="${ordersForm.address}"></span></p>
+	    <p>アパート名：<span th:text="${ordersForm.apartment}"></span></p>
+	    <p>カード番号：<span th:text="${ordersForm.cardNumber}"></span></p>
+	    <p>有効期限：<span th:text="${ordersForm.expiryDate}"></span></p>
+	    <a th:href="@{/top}" class="button">TOP画面に戻る</a>
+	  </div>
+	</div>
+
+	<div th:replace="common/footer :: layout-footer"></div>  
+</body>
+</html>

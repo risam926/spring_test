@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/top.css}" rel="stylesheet" />
+<link th:href="@{/css/header.css}" rel="stylesheet" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" />
+<title>トップ画面</title>
+</head>
+<body>
+	<div th:replace="common/header :: layout-header"></div>
+	<div class="container">
+	        <h1>トップ画面</h1>
+	        <div class="sale-items">セール品</div>
+	        <div class="images">
+				<div th:each="s : ${salesItems}">
+				    <a th:href="@{/product_index/{productId}(productId=${s.productId})}">
+						<img th:src="${s.salesImgPath}" />
+			
+				    </a>
+			</div>
+			</div>
+	</div>
+	<div th:replace="common/footer :: layout-footer"></div>  
+</body>
+</html>

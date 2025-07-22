@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>header</title>
+</head>
+<body>
+    <header id="header" th:fragment="layout-header">
+		<div class="search-container">
+		<form th:action="@{/search}" method="get" class="search-form">
+			<input type="text" name="productName" placeholder="商品名を入力"> 
+		       <select name="category">
+				<option value="1">衣類</option>
+				<option value="2">筋トレグッズ</option>
+				   <option value="3">食べ物</option>
+				   <option value="4">オブジェ</option>
+		       </select>
+		       <button type="submit">検索</button>
+		</form>
+		</div>
+		   <div class="user-area">
+		       <a href="/spring_test/mypage"><button>マイページ</button></a>
+			   <span th:if="${user != null}" th:text="${user.userName}">ユーザー名</span>
+			   <span th:unless="${user != null}">ゲスト</span>
+			   <form th:action="@{/logout}" method="post">
+			       <button type="submit">ログアウト</button>
+		       </form>
+			</div>
+	</header>
+</body>
+</html>
+
+

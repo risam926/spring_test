@@ -1,0 +1,97 @@
+@charset "UTF-8";
+body {
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 30px;
+  line-height: 1.6;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #333;
+}
+
+.product-card {
+  width: 450px;
+  height: 300px;
+  margin: 0 auto 20px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+
+.product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-card + div {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+
+.section {
+  margin: 40px auto;
+  max-width: 600px;
+  background-color: #e8f5e9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form button {
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;  
+}
+
+form button:hover {
+  background-color: royalblue;
+}
+
+
+.reviews {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reviews li {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.reviews span {
+  display: inline-block;
+}
+
+.reviews p {
+  margin: 5px 0;
+}
+
+a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #1976d2;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
