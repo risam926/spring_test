@@ -11,19 +11,15 @@ import jp.co.sss.spring_test.form.UsersForm;
 @Controller
 public class mypageController {
 	@GetMapping("/mypage")
-    public String showMyPage(HttpSession session,Model model) {
-        UsersForm form = new UsersForm();
-        form.setUserName("藤原里紗");
-        form.setUserNameKana("ふじわらりさ");
-        form.setPhone("090-xxxx-yyyy");
+	public String showMypage(HttpSession session, Model model) {
+	    UsersForm user = (UsersForm) session.getAttribute("user");
+	    if (user != null) {
+	        model.addAttribute("usersForm", user); 
+	        return "mypage";
+	    } else {
+	        return "redirect:/login";
+	    }
+	}
 
-        model.addAttribute("usersForm", form);
-        
-        UsersForm user = (UsersForm) session.getAttribute("user");
-        if (user != null) {
-      	  model.addAttribute("user", user);
-        }
-        return "mypage";
-    }
 
 }
